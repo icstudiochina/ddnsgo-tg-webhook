@@ -1,5 +1,5 @@
 # 使用一個輕量的 Python 官方映像檔
-FROM python:3.9-slim
+FROM python:alpine3.22
 
 # 設定工作目錄
 WORKDIR /app
