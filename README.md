@@ -44,7 +44,8 @@ IPv6狀態: `#{ipv6Result}`
 ```
 
 4. DDNS-Go 更新通知：  
-你可以手動觸發一次 ddns-go 的更新，來測試通知是否成功發送到你的 Telegram。  
+你可以手動觸發一次 ddns-go 的更新，來測試通知是否成功發送到你的 Telegram。
+![tg-bot](https://github.com/icstudiochina/ddnsgo-tg-webhook/blob/master/tg-bot.jpg)
 
 ### 參考
 模板變量參考：[https://github.com/jeessy2/ddns-go?tab=readme-ov-file#webhook](https://github.com/jeessy2/ddns-go?tab=readme-ov-file#webhook "https://github.com/jeessy2/ddns-go?tab=readme-ov-file#webhook")
