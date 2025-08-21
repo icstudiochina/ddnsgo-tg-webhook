@@ -12,7 +12,7 @@ docker build -t ddnsgo-tg-webhook .
 ```
 
 2. 執行容器：  
-使用 docker run 指令來啟動你的本地構建 Webhook 服務。記得將 <YourBotToken> 和 <YourChatID> 換成你自己的。
+使用 docker run 指令來啟動你的本地構建 Webhook 服務。記得將 YourBotToken 和 YourChatID 換成你自己的。
 ```
 docker run -d \
  --name my-ddns-bot \
