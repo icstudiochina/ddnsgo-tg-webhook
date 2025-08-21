@@ -12,7 +12,7 @@ docker build -t ddnsgo-tg-webhook .
 ```
 
 2. 執行容器：  
-使用 docker run 指令來啟動你的 Webhook 服務。記得將 <YourBotToken> 和 <YourChatID> 換成你自己的。
+使用 docker run 指令來啟動你的本地構建 Webhook 服務。記得將 <YourBotToken> 和 <YourChatID> 換成你自己的。
 ```
 docker run -d \
  --name my-ddns-bot \
@@ -21,6 +21,16 @@ docker run -d \
  -e TELEGRAM_CHAT_ID="<YourChatID>" \
  --restart always \
  ddnsgo-tg-webhook
+```
+或直接使用docker倉庫的鏡像：[icstudiocn/ddnsgo-tg-webhook](https://hub.docker.com/r/icstudiocn/ddnsgo-tg-webhook)
+```
+docker run -d \
+ --name my-ddns-bot \
+ -p 5000:8000 \
+ -e TELEGRAM_BOT_TOKEN="<YourBotToken>" \
+ -e TELEGRAM_CHAT_ID="<YourChatID>" \
+ --restart always \
+ icstudiocn/ddnsgo-tg-webhook
 ```
 
 3. 設定 ddns-go：  
