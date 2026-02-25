@@ -1,11 +1,8 @@
-# 使用一個輕量的 Python 官方映像檔
+# 1. 使用一個輕量的 Python 官方映像檔
 FROM python:3.12-alpine3.23
 # FROM alpine:3.x
 
-# 1.强制更新已安装的所有 apk 包到最新安全版本
-RUN apk update && apk upgrade --no-cache
-
-# 2. 修复 OS 级别的漏洞
+# 2.强制更新已安装的所有 apk 包到最新安全版本
 RUN apk update && apk upgrade --no-cache
 
 # 3. 修复 Pip 自身的漏洞
