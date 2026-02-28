@@ -16,7 +16,6 @@ docker build -t ddnsgo-tg-webhook .
 ```
 docker run -d \
  --name my-ddns-bot \
- -p 5000:8000 \
  -e TELEGRAM_BOT_TOKEN="<YourBotToken>" \
  -e TELEGRAM_CHAT_ID="<YourChatID>" \
  --restart always \
@@ -26,7 +25,6 @@ docker run -d \
 ```
 docker run -d \
  --name my-ddns-bot \
- -p 5000:8000 \
  -e TELEGRAM_BOT_TOKEN="<YourBotToken>" \
  -e TELEGRAM_CHAT_ID="<YourChatID>" \
  --restart always \
@@ -34,10 +32,10 @@ docker run -d \
 ```
 
 3. 設定 ddns-go：  
-現在你的 Webhook 已經在 http://<你的伺服器IP>:5000/webhook 上運行了。最後一步就是設定 ddns-go。  
+現在你的 Webhook 已經在 http://<你的伺服器IP>:6789/webhook 上運行了。最後一步就是設定 ddns-go。  
 登入 ddns-go 的網頁管理介面。  
 ![ddns-go](https://github.com/icstudiochina/ddnsgo-tg-webhook/blob/master/ddns-go.jpg)
-滑到底部的「Webhook」部分。在Webhook URL 填入你的服務地址，例如，http://<你的伺服器IP或域名>:5000/webhook  
+滑到底部的「Webhook」部分。在Webhook URL 填入你的服務地址，例如，http://<你的伺服器IP或域名>:6789/webhook  
 強烈建議：為了安全，你應該使用 Nginx 或 Caddy 等反向代理，為你的 Webhook 配置一個域名和 HTTPS。這樣 URL 就會是 https://your-domain.com/webhook。  
 Webhook Request Body 填入你想要收到的訊息格式。   
 一個推薦的格式如下（支援 Markdown）：
