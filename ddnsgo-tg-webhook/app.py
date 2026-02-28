@@ -38,17 +38,22 @@ def telegram_webhook():
         'parse_mode': 'Markdown' # 你可以選擇性使用 Markdown 或 HTML 來格式化訊息
     }
 
+    app.logger.info(f"正在發送訊息到 Telegram (Chat ID: {TELEGRAM_CHAT_ID})...")
+
     try:
-        # 發送請求到 Telegram
-        response = requests.post(telegram_api_url, json=payload)
+        # 發送請求到 Telegram，添加 10 秒超時限制
+        response = requests.post(telegram_api_url, json=payload, timeout=10)
         response.raise_for_status()  # 如果請求失敗 (例如 4xx 或 5xx)，會拋出異常
 
         app.logger.info(f"成功發送訊息到 Chat ID {TELEGRAM_CHAT_ID}")
         return jsonify({"status": "success", "message": "Notification sent to Telegram"}), 200
 
+    except requests.exceptions.Timeout:
+        app.logger.error("發送 Telegram 訊息超時！請檢查網路連通性或是否需要代理。")
+        return jsonify({"status": "error", "message": "Timeout while sending to Telegram"}), 504
     except requests.exceptions.RequestException as e:
         app.logger.error(f"發送 Telegram 訊息失敗: {e}")
-        return jsonify({"status": "error", "message": "Failed to send notification to Telegram"}), 500
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.route('/health', methods=['GET'])
 def health_check():
@@ -57,4 +62,4 @@ def health_check():
 
 if __name__ == '__main__':
     # 這個區塊僅用於本地開發測試，部署時應使用 gunicorn
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=6789, debug=True)
