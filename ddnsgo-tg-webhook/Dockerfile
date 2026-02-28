@@ -20,8 +20,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 7.複製應用程式程式碼
 COPY app.py .
 
-# 8.開放容器的 8000 連接埠
-EXPOSE 8000
+# 8.開放容器的 6789 連接埠
+EXPOSE 6789
 
 # 9.設定環境變數 (僅為預設值，執行時應覆寫)
 ENV TELEGRAM_BOT_TOKEN=""
@@ -29,6 +29,6 @@ ENV TELEGRAM_CHAT_ID=""
 
 # 10.執行 Gunicorn 伺服器
 # -w 2: 啟動 2 個工作進程
-# -b 0.0.0.0:8000: 監聽所有 IP 的 8000 連接埠
+# -b 0.0.0.0:6789: 監聽所有 IP 的 6789 連接埠
 # app:app: 執行 app.py 中的 app 物件
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8000", "app:app"]
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:6789", "app:app"]
