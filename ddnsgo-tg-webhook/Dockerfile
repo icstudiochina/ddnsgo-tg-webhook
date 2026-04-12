@@ -3,7 +3,9 @@ FROM python:3.12-alpine3.23
 # FROM alpine:3.x
 
 # 2.强制更新已安装的所有 apk 包到最新安全版本
-RUN apk update && apk upgrade --no-cache
+# 从 edge 仓库安装更新的 busybox 以修复 CVE-2025-60876
+RUN apk update && apk upgrade --no-cache && \
+    apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/main busybox=1.37.0-r31
 
 # 3. 修复 Pip 自身的漏洞
 RUN pip install --no-cache-dir --upgrade pip
