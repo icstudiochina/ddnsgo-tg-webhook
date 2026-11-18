@@ -1,9 +1,9 @@
 # 1. 使用一個輕量的 Python 官方映像檔
 FROM python:3.12-alpine3.24
 
-# 2. 强制更新已安装的所有 apk 包到最新安全版本，并从 edge 升级 musl 以修复 CVE-2026-107891
+# 2. 强制更新已安装的所有 apk 包到最新安全版本，并从 edge 升级 musl 与 openssl 库以修复最新 CVE
 RUN apk update && apk upgrade --no-cache && \
-    apk upgrade --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/main musl musl-utils
+    apk upgrade --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/main musl musl-utils libcrypto3 libssl3
 
 # 3. 随后再安装你的业务代码
 WORKDIR /app
